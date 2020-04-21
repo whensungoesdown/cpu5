@@ -5,10 +5,24 @@
 # File (.qsf), and the list of source files used.
 ###################################################################
 
-PROJECT = cpu5_core
-SOURCE_FILES = ../hdl/defines.v ../hdl/cpu5_core.v
+PROJECT = top
+SOURCE_FILES = ../hdl/defines.v ../hdl/cpu5_core.v \
+		../hdl/cpu5_controller.v \
+		../hdl/cpu5_maindec.v \
+		../hdl/cpu5_aludec.v \
+		../hdl/cpu5_datapath.v \
+		../hdl/cpu5_dffs.v \
+		../hdl/cpu5_adder.v \
+		../hdl/cpu5_sl2.v \
+		../hdl/cpu5_mux2.v \
+		../hdl/cpu5_regfile.v \
+		../hdl/cpu5_signext.v \
+		../hdl/cpu5_alu.v \
+		../hdl/top.v \
+		../testbenches/pseudo_icache.v
+
 SOURCE_FILES_PARAMETER = $(addprefix --source=, $(SOURCE_FILES))
-ASSIGNMENT_FILES = cpu5_core.qpf cpu5_core.qsf 
+ASSIGNMENT_FILES = top.qpf top.qsf 
 
 ###################################################################
 # Main Targets
@@ -32,8 +46,11 @@ smart: smart.log
 # Executable Configuration
 ###################################################################
 
-MAP_ARGS = --family=CycloneII $(SOURCE_FILES_PARAMETER)
-FIT_ARGS = --part=EP2C5T144C8
+# Quartus 19.1 Prime lite doesn't support CycloneII
+# To compile, put CycloneIV here
+#MAP_ARGS = --family=CycloneII $(SOURCE_FILES_PARAMETER)
+#FIT_ARGS = --part=EP2C5T144C8i
+MAP_ARGS = --family=CycloneIV $(SOURCE_FILES_PARAMETER)
 ASM_ARGS =
 STA_ARGS =
 
