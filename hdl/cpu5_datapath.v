@@ -47,10 +47,10 @@ module cpu5_datapath (
    cpu5_mux2#(`CPU5_XLEN) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext);
 
    // register file logic
-   cpu5_regfile rf(instr[`CPU5_RS2_HIGH:`CPU5_RS2_LOW],
-		   instr[`CPU5_RS1_HIGH:`CPU5_RS1_LOW],
-		   srca, writedata,
-		   regwrite,
+   cpu5_regfile rf(instr[`CPU5_RS1_HIGH:`CPU5_RS1_LOW],
+                   instr[`CPU5_RS2_HIGH:`CPU5_RS2_LOW],
+                   srca, writedata,
+                   regwrite,
 		   writereg, result,
 		   clk, reset);
 

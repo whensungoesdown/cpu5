@@ -24,7 +24,15 @@ module cpu5_maindec (
 
    wire op_lw;
 
-   assign op_lw = (op == 6'b100011);
-   assign controls = ({9{op_lw}} & 9'b101001000);
+   assign op_lw = (op == 6'b0000011);
+   assign controls = ({9{op_lw}} & 9'b111001000); // aluop 00
+                                                  // jump 0
+                                                  // memtoreg 1
+                                                  // memwrite 0
+                                                  // branch 0
+                                                  // alusrc 1  0:Writedata from rf, 1:imm
+                                                  // regdst 1  0:WRITE_TO_RS2; 1:WRITE_TO_RD
+                                                  // regwrite 1
+                                                  // Above describes LW instruction
    
 endmodule

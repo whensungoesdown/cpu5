@@ -8,6 +8,9 @@
 `define CPU5_ALU_CONTROL_SIZE     3
 `define CPU5_ALU_OP_SIZE          2
 
+`define CPU5_FUNCT3_HIGH         14
+`define CPU5_FUNCT3_LOW          12
+`define CPU5_FUNCT3_SIZE          3
 
 `define CPU5_FUNCT7_HIGH         31
 `define CPU5_FUNCT7_LOW          25

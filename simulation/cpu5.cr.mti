@@ -1,0 +1,109 @@
+/home/uty/prjs/cpu5/testbenches/pseudo_icache.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/testbenches/pseudo_icache.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module pseudo_icache
+-- Compiling module pseudo_dcache
+
+Top level modules:
+	pseudo_icache
+	pseudo_dcache
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_adder.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_adder.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_adder
+
+Top level modules:
+	cpu5_adder
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_core.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_core.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_core
+
+Top level modules:
+	cpu5_core
+
+} {} {}} /home/uty/prjs/cpu5/hdl/defines.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/defines.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_signext.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_signext.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_signext
+
+Top level modules:
+	cpu5_signext
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_dffs.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_dffs.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_dffl
+-- Compiling module cpu5_dfflr
+-- Compiling module cpu5_dffr
+
+Top level modules:
+	cpu5_dffl
+	cpu5_dfflr
+	cpu5_dffr
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_controller.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_controller.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_controller
+
+Top level modules:
+	cpu5_controller
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_mux2.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_mux2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_mux2
+
+Top level modules:
+	cpu5_mux2
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_aludec.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_aludec.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_aludec
+
+Top level modules:
+	cpu5_aludec
+
+} {} {}} /home/uty/prjs/cpu5/hdl/top.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/top.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module top
+
+Top level modules:
+	top
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_maindec.v {2 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_maindec.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_maindec
+** Warning: /home/uty/prjs/cpu5/hdl/cpu5_maindec.v(27): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+
+Top level modules:
+	cpu5_maindec
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_sl2.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_sl2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_sl2
+
+Top level modules:
+	cpu5_sl2
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_alu.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_alu.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_alu
+
+Top level modules:
+	cpu5_alu
+
+} {} {}} /home/uty/prjs/cpu5/testbenches/top_tb.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/testbenches/top_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module top_tb
+
+Top level modules:
+	top_tb
+
+} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_regfile.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_regfile.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module cpu5_regfile
+
+Top level modules:
+	cpu5_regfile
+
+} {} {}}
