@@ -5,11 +5,11 @@ module top_tb();
     reg clk;
     reg reset;
 
-    wire [`CPU5_XLEN-1:0] writedata, dataadr;
-    wire memwrite;
+    //wire [`CPU5_XLEN-1:0] writedata, dataadr;
+    //wire memwrite;
 
     // instantiate device to be tested
-    top dut(clk, reset, writedata, dataadr, memwrite);
+    top dut(clk, reset);
 
     // initialize test
     initial

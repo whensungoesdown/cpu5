@@ -14,13 +14,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	cpu5_adder
 
-} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_core.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_core.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module cpu5_core
-
-Top level modules:
-	cpu5_core
-
 } {} {}} /home/uty/prjs/cpu5/hdl/defines.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/defines.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 
@@ -73,7 +66,8 @@ Top level modules:
 } {} {}} /home/uty/prjs/cpu5/hdl/cpu5_maindec.v {2 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_maindec.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module cpu5_maindec
-** Warning: /home/uty/prjs/cpu5/hdl/cpu5_maindec.v(27): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: /home/uty/prjs/cpu5/hdl/cpu5_maindec.v(38): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: /home/uty/prjs/cpu5/hdl/cpu5_maindec.v(39): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
 
 Top level modules:
 	cpu5_maindec

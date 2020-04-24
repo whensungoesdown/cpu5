@@ -9,7 +9,7 @@ z2
 cModel Technology
 d/home/uty/prjs
 vcpu5_adder
-Z0 !s110 1587694113
+Z0 !s110 1587762785
 !i10b 1
 !s100 D^Z@6<PXimK59SP6;o;_63
 I_@E`U]]5XJR;e]MJ1E97N0
@@ -23,7 +23,7 @@ Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z4 !s108 1587694113.000000
+Z4 !s108 1587762785.000000
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_adder.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_adder.v|
 !i113 1
@@ -74,11 +74,11 @@ R6
 vcpu5_controller
 R0
 !i10b 1
-!s100 JgIlNn<NCR8hk@>WD2[R61
-I<C:<i9JIWL:4i?al^=];E3
+!s100 AoTSK<dPSCeB>i5cIj<Bl2
+IX4o98Zzm60EZ9_<EU?lMH1
 R1
 R2
-w1587683606
+w1587759645
 8/home/uty/prjs/cpu5/hdl/cpu5_controller.v
 F/home/uty/prjs/cpu5/hdl/cpu5_controller.v
 L0 3
@@ -95,11 +95,11 @@ R6
 vcpu5_core
 R0
 !i10b 1
-!s100 C^3QGCmn>K7C7L^D65_>J3
-IQCT?FoE4BJD9B04Ci[kBC2
+!s100 BVWKEgJLU_LWjZ=4C[k@43
+I0>V4>@CO`mezP5<3^mcU=3
 R1
 R2
-w1587670633
+w1587762667
 8/home/uty/prjs/cpu5/hdl/cpu5_core.v
 F/home/uty/prjs/cpu5/hdl/cpu5_core.v
 L0 3
@@ -116,11 +116,11 @@ R6
 vcpu5_datapath
 R0
 !i10b 1
-!s100 0YKbf>a8>Jno<FJ=F<8c]3
-IgGnzVg`1^:E2?LOCjdZQO3
+!s100 JDLOODJ?bYe[Sz2ff0S5n1
+ImIO9]Xbo^H>o3RkGdD?JI3
 R1
 R2
-w1587694080
+w1587762368
 8/home/uty/prjs/cpu5/hdl/cpu5_datapath.v
 F/home/uty/prjs/cpu5/hdl/cpu5_datapath.v
 L0 3
@@ -200,14 +200,14 @@ R6
 vcpu5_maindec
 R0
 !i10b 1
-!s100 Xd<Hc_0D=`6R`dSY4[1TR2
-I89Ge`7MA[Tf8_>ZUzVD8S0
+!s100 cVQoU:doTo5d>4EQFFTLW2
+In1WMQUSTh9Z0[X<Ye7<6X3
 R1
 R2
-w1587693094
+w1587760455
 8/home/uty/prjs/cpu5/hdl/cpu5_maindec.v
 F/home/uty/prjs/cpu5/hdl/cpu5_maindec.v
-L0 3
+L0 11
 R3
 r1
 !s85 0
@@ -303,55 +303,55 @@ R4
 R5
 R6
 vpseudo_dcache
-Z12 !s110 1587694114
+R0
 !i10b 1
 !s100 ;o>gQkSGKOn647R`3F7aD3
 In=ORZ<A<Bh[GZQ4c?Ce1W1
 R1
 R2
-Z13 w1587484334
-Z14 8/home/uty/prjs/cpu5/testbenches/pseudo_icache.v
-Z15 F/home/uty/prjs/cpu5/testbenches/pseudo_icache.v
+Z12 w1587484334
+Z13 8/home/uty/prjs/cpu5/testbenches/pseudo_icache.v
+Z14 F/home/uty/prjs/cpu5/testbenches/pseudo_icache.v
 L0 18
 R3
 r1
 !s85 0
 31
-Z16 !s108 1587694114.000000
-Z17 !s107 ../hdl/defines.v|/home/uty/prjs/cpu5/testbenches/pseudo_icache.v|
-Z18 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/testbenches/pseudo_icache.v|
+R4
+Z15 !s107 ../hdl/defines.v|/home/uty/prjs/cpu5/testbenches/pseudo_icache.v|
+Z16 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/testbenches/pseudo_icache.v|
 !i113 1
 R5
 R6
 vpseudo_icache
-R12
+R0
 !i10b 1
 !s100 Kfh5PkDQiV89Q`RTTWj;:3
 IDTo=k=<@D?d87J>];cZ]B3
 R1
 R2
+R12
 R13
 R14
-R15
 L0 3
 R3
 r1
 !s85 0
 31
+R4
+R15
 R16
-R17
-R18
 !i113 1
 R5
 R6
 vtop
-R12
+R0
 !i10b 1
-!s100 k>ehIgjIiGzTDW;?eN7SH1
-I[CfE13kH`_9fD?lZ71HN12
+!s100 _>;PQ[G6fA@]bj5^mF@zA0
+Ic<PEBIXNd7a=GFA]hR@d71
 R1
 R2
-w1587479005
+w1587753565
 8/home/uty/prjs/cpu5/hdl/top.v
 F/home/uty/prjs/cpu5/hdl/top.v
 L0 3
@@ -359,20 +359,20 @@ R3
 r1
 !s85 0
 31
-R16
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/top.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/top.v|
 !i113 1
 R5
 R6
 vtop_tb
-R12
+R0
 !i10b 1
-!s100 ?j[<:4z]LVTmIn`9M9jbR0
-ID`F[2d]JS[^P;d`Lc`W<50
+!s100 0GF4]n@[EQMh^G]gF]UK^2
+ICD=7GQQbgcQkeN3G<c6>42
 R1
 R2
-w1587503625
+w1587753502
 8/home/uty/prjs/cpu5/testbenches/top_tb.v
 F/home/uty/prjs/cpu5/testbenches/top_tb.v
 L0 3
@@ -380,7 +380,7 @@ R3
 r1
 !s85 0
 31
-R16
+R4
 !s107 ../hdl/defines.v|/home/uty/prjs/cpu5/testbenches/top_tb.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/testbenches/top_tb.v|
 !i113 1

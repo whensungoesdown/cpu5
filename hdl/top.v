@@ -2,16 +2,17 @@
 
 module top (
 	    input  clk,
-	    input  reset,
-	    output [`CPU5_XLEN-1:0] dataaddr,
-	    output [`CPU5_XLEN-1:0] writedata,
-	    output memwrite
+	    input  reset
 	    );
 
    wire [`CPU5_XLEN-1:0] pc;
    wire [`CPU5_XLEN-1:0] instr;
    wire [`CPU5_XLEN-1:0] readdata;
 
+   wire [`CPU5_XLEN-1:0] dataaddr;
+   wire [`CPU5_XLEN-1:0] writedata;
+   wire memwrite;
+   
    // instantiate processor and memories
    cpu5_core core(clk, reset, pc, instr, memwrite,
 		  dataaddr, writedata, readdata);
