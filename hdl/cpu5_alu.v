@@ -21,12 +21,12 @@ module cpu5_alu (
 	assign add_result = a + b;
 	assign sub_result = a - b;
 	
-	assign y =  ({`CPU5_XLEN{control_add}} & add_result) |
-				({`CPU5_XLEN{control_sub}} & sub_result)
-				;
+	assign y = ({`CPU5_XLEN{control_add}} & add_result)
+	         | ({`CPU5_XLEN{control_sub}} & sub_result)
+		    ;
 		
-	assign zero =   (control_add & (add_result == `CPU5_XLEN'b0)) |
-					(control_sub & (sub_result == `CPU5_XLEN'b0))
-					;
+	assign zero = (control_add & (add_result == `CPU5_XLEN'b0))
+	            | (control_sub & (sub_result == `CPU5_XLEN'b0))
+		       ;
 	
 endmodule

@@ -31,7 +31,7 @@ module cpu5_datapath (
    wire [`CPU5_XLEN-1:0] pcbranch;
 
    wire [`CPU5_XLEN-1:0] signimm; 
-   //wire [`CPU5_XLEN-1:0] signimmsh;
+   wire [`CPU5_XLEN-1:0] signimmsh;
    
    wire [`CPU5_XLEN-1:0] rs1;
    wire [`CPU5_XLEN-1:0] rs2_imm;
@@ -51,14 +51,25 @@ module cpu5_datapath (
 			instr[`CPU5_S_IMM1_HIGH:`CPU5_S_IMM1_LOW]
 			};
 
+   wire [`CPU5_XLEN-1:0] b_imm = {
+			 {`CPU5_XLEN-`CPU5_B_IMM_SIZE{instr[`CPU5_B_IMM_BIT12]}},
+			 instr[`CPU5_B_IMM_BIT12],
+			 instr[`CPU5_B_IMM_BIT11],
+			 instr[`CPU5_B_IMM2_HIGH:`CPU5_B_IMM2_LOW],
+			 instr[`CPU5_B_IMM1_HIGH:`CPU5_B_IMM1_LOW]
+			 };
+
    assign signimm = ({`CPU5_XLEN{immtype == `CPU5_IMMTYPE_I}} & i_imm)
                   | ({`CPU5_XLEN{immtype == `CPU5_IMMTYPE_S}} & s_imm)
+                  | ({`CPU5_XLEN{immtype == `CPU5_IMMTYPE_B}} & b_imm)
 		     ;
 
    // next PC logic
    cpu5_dffr#(`CPU5_XLEN) pcreg(pcnext, pc, clk, reset);
    cpu5_adder pcadd1(pc, 32'b100, pcplus4); // next pc if no branch, no jump
-   //cpu5_sl2 immsh(signimm, signimmsh);
+   cpu5_sl1 immsh(signimm, signimmsh);
+   // risc-v counts begin at the current branch instruction
+   cpu5_adder pcadd2(pc, signimmsh, pcbranch);
    // pcsrc desides if to take next instruction or branch to pcbranch
    // pcnextbr means pc next br 
    cpu5_mux2#(`CPU5_XLEN) pcbrmux(pcplus4, pcbranch, pcsrc, pcnextbr);

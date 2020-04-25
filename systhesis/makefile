@@ -13,7 +13,7 @@ SOURCE_FILES = ../hdl/defines.v ../hdl/cpu5_core.v \
 		../hdl/cpu5_datapath.v \
 		../hdl/cpu5_dffs.v \
 		../hdl/cpu5_adder.v \
-		../hdl/cpu5_sl2.v \
+		../hdl/cpu5_sl1.v \
 		../hdl/cpu5_mux2.v \
 		../hdl/cpu5_regfile.v \
 		../hdl/cpu5_signext.v \

@@ -46,11 +46,20 @@
 `define CPU5_I_IMM_SIZE          12
 
 // S-type imm
-`define CPU5_S_IMM1_HIGH         11
-`define CPU5_S_IMM1_LOW           7
 `define CPU5_S_IMM2_HIGH         31
 `define CPU5_S_IMM2_LOW          25
+`define CPU5_S_IMM1_HIGH         11
+`define CPU5_S_IMM1_LOW           7
 `define CPU5_S_IMM_SIZE          12 
+
+// B-type imm
+`define CPU5_B_IMM_BIT12         31
+`define CPU5_B_IMM_BIT11          7
+`define CPU5_B_IMM2_HIGH         30
+`define CPU5_B_IMM2_LOW          25
+`define CPU5_B_IMM1_HIGH         11
+`define CPU5_B_IMM1_LOW           8
+`define CPU5_B_IMM_SIZE          12
 
 `define CPU5_OPCODE_HIGH          6
 `define CPU5_OPCODE_LOW           0
