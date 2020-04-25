@@ -26,7 +26,8 @@ module cpu5_controller (
    // aluop is the way that cpu5_maindec tells cpu5_aludec what
    //    alucontrol it should give
    
-   cpu5_maindec md(op, memtoreg, memwrite, branch,
+   cpu5_maindec md(op,funct3, funct7,
+                   memtoreg, memwrite, branch,
 		   alusrc, regdst, regwrite, jump,
 		   aluop, immtype);
 
