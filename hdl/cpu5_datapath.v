@@ -33,8 +33,8 @@ module cpu5_datapath (
    wire [`CPU5_XLEN-1:0] signimm; 
    //wire [`CPU5_XLEN-1:0] signimmsh;
    
-   wire [`CPU5_XLEN-1:0] srca;
-   wire [`CPU5_XLEN-1:0] srcb;
+   wire [`CPU5_XLEN-1:0] rs1;
+   wire [`CPU5_XLEN-1:0] rs2_imm;
    
    wire [`CPU5_XLEN-1:0] result;
 
@@ -69,24 +69,25 @@ module cpu5_datapath (
    // register file logic
    cpu5_regfile rf(instr[`CPU5_RS1_HIGH:`CPU5_RS1_LOW],
                    instr[`CPU5_RS2_HIGH:`CPU5_RS2_LOW],
-                   srca, writedata,
+                   rs1, writedata, // SW: rs2 contains data to write to memory
                    regwrite,
 		   writereg, result,
 		   clk, reset);
 
-   // regdst determines whether write to rs2 or write to rd as LW instruction does
+   // regdst determines whether  or write to rd in LW instruction
+   // ? when need to write to rs2?
    cpu5_mux2#(`CPU5_RFIDX_WIDTH) wrmux(instr[`CPU5_RS2_HIGH:`CPU5_RS2_LOW],
 				       instr[`CPU5_RD_HIGH:`CPU5_RD_LOW],
 				       regdst, writereg);
    // memtoreg 1 means it's a LW, data comes from memory,
    // otherwise the result comes from ALU
+   // LW: load data from memory to rd.  add rd, rs1, rs2: ALU output to rd
    cpu5_mux2#(`CPU5_XLEN) resmux(aluout, readdata, memtoreg, result);
 
    //cpu5_signext se(instr[`CPU5_IMM_HIGH:`CPU5_IMM_LOW], signimm);
 
    // ALU logic
-   // srca from regfile, srcb ...
-   cpu5_mux2#(`CPU5_XLEN) srcbmux(writedata, signimm, alusrc, srcb);
-   cpu5_alu alu(srca, srcb, alucontrol, aluout, zero);
+   cpu5_mux2#(`CPU5_XLEN) srcbmux(writedata, signimm, alusrc, rs2_imm);
+   cpu5_alu alu(rs1, rs2_imm, alucontrol, aluout, zero);
 		      
 endmodule // cpu5_datapath

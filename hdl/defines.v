@@ -28,6 +28,7 @@
 // IMM
 `define CPU5_IMMTYPE_SIZE        3
 
+`define CPU5_IMMTYPE_R           3'b000
 `define CPU5_IMMTYPE_I           3'b001
 `define CPU5_IMMTYPE_S           3'b010
 `define CPU5_IMMTYPE_B           3'b011

@@ -9,7 +9,7 @@ z2
 cModel Technology
 d/home/uty/prjs
 vcpu5_adder
-Z0 !s110 1587830497
+Z0 !s110 1587837026
 !i10b 1
 !s100 D^Z@6<PXimK59SP6;o;_63
 I_@E`U]]5XJR;e]MJ1E97N0
@@ -23,12 +23,12 @@ Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-!s108 1587830496.000000
+Z4 !s108 1587837026.000000
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_adder.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_adder.v|
 !i113 1
-Z4 o-work work
-Z5 tCvgOpt 0
+Z5 o-work work
+Z6 tCvgOpt 0
 vcpu5_alu
 R0
 !i10b 1
@@ -44,12 +44,12 @@ R3
 r1
 !s85 0
 31
-Z6 !s108 1587830497.000000
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_alu.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_alu.v|
 !i113 1
-R4
 R5
+R6
 vcpu5_aludec
 R0
 !i10b 1
@@ -65,12 +65,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_aludec.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_aludec.v|
 !i113 1
-R4
 R5
+R6
 vcpu5_controller
 R0
 !i10b 1
@@ -86,12 +86,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_controller.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_controller.v|
 !i113 1
-R4
 R5
+R6
 vcpu5_core
 R0
 !i10b 1
@@ -107,20 +107,20 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_core.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_core.v|
 !i113 1
-R4
 R5
+R6
 vcpu5_datapath
 R0
 !i10b 1
-!s100 JDLOODJ?bYe[Sz2ff0S5n1
-ImIO9]Xbo^H>o3RkGdD?JI3
+!s100 CG7QXE2g[obAP4igYD?621
+IflgbjB9M8_E1R5Z?3TCZj1
 R1
 R2
-w1587762368
+w1587836869
 8/home/uty/prjs/cpu5/hdl/cpu5_datapath.v
 F/home/uty/prjs/cpu5/hdl/cpu5_datapath.v
 L0 3
@@ -128,12 +128,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_datapath.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_datapath.v|
 !i113 1
-R4
 R5
+R6
 vcpu5_dffl
 R0
 !i10b 1
@@ -149,12 +149,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 Z10 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_dffs.v|
 Z11 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_dffs.v|
 !i113 1
-R4
 R5
+R6
 vcpu5_dfflr
 R0
 !i10b 1
@@ -170,12 +170,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 R10
 R11
 !i113 1
-R4
 R5
+R6
 vcpu5_dffr
 R0
 !i10b 1
@@ -191,20 +191,20 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 R10
 R11
 !i113 1
-R4
 R5
+R6
 vcpu5_maindec
 R0
 !i10b 1
-!s100 c[O6hJAT=Z1CjciUcVBYQ3
-IT8;>@lhO0fST0OXMAcW6d0
+!s100 1jH6m2zzhCS>kGF?MX=hC1
+I366h[1glNkg;8^0SBiBS51
 R1
 R2
-w1587824767
+w1587832499
 8/home/uty/prjs/cpu5/hdl/cpu5_maindec.v
 F/home/uty/prjs/cpu5/hdl/cpu5_maindec.v
 L0 13
@@ -212,12 +212,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_maindec.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_maindec.v|
 !i113 1
-R4
 R5
+R6
 vcpu5_mux2
 R0
 !i10b 1
@@ -233,12 +233,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_mux2.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_mux2.v|
 !i113 1
-R4
 R5
+R6
 vcpu5_regfile
 R0
 !i10b 1
@@ -254,12 +254,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_regfile.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_regfile.v|
 !i113 1
-R4
 R5
+R6
 vcpu5_signext
 R0
 !i10b 1
@@ -275,12 +275,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_signext.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_signext.v|
 !i113 1
-R4
 R5
+R6
 vcpu5_sl2
 R0
 !i10b 1
@@ -296,12 +296,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/cpu5_sl2.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/cpu5_sl2.v|
 !i113 1
-R4
 R5
+R6
 vpseudo_dcache
 R0
 !i10b 1
@@ -317,12 +317,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 Z15 !s107 ../hdl/defines.v|/home/uty/prjs/cpu5/testbenches/pseudo_icache.v|
 Z16 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/testbenches/pseudo_icache.v|
 !i113 1
-R4
 R5
+R6
 vpseudo_icache
 R0
 !i10b 1
@@ -338,12 +338,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 R15
 R16
 !i113 1
-R4
 R5
+R6
 vtop
 R0
 !i10b 1
@@ -359,12 +359,12 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 /home/uty/prjs/cpu5/hdl/defines.v|/home/uty/prjs/cpu5/hdl/top.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/hdl/top.v|
 !i113 1
-R4
 R5
+R6
 vtop_tb
 R0
 !i10b 1
@@ -380,9 +380,9 @@ R3
 r1
 !s85 0
 31
-R6
+R4
 !s107 ../hdl/defines.v|/home/uty/prjs/cpu5/testbenches/top_tb.v|
 !s90 -reportprogress|300|-work|work|-stats=none|/home/uty/prjs/cpu5/testbenches/top_tb.v|
 !i113 1
-R4
 R5
+R6
