@@ -1,6 +1,6 @@
 `include "defines.v"
 
-`define MAINDEC_CONTROL_SIZE          12
+`define MAINDEC_CONTROL_SIZE          14
 
 
 `define MAINDEC_CONTROL_ALUSRC_RS2     1'b0
@@ -20,7 +20,7 @@ module cpu5_maindec (
                      input  [`CPU5_FUNCT7_SIZE-1:0] funct7,
 		     output memtoreg,
 		     output memwrite,
-		     output branch,
+		     output [`CPU5_BRANCHTYPE_SIZE-1:0]branchtype,
 		     output alusrc,
 		     output regdst,
 		     output regwrite,
@@ -30,12 +30,13 @@ module cpu5_maindec (
 		     );
 
    wire [`MAINDEC_CONTROL_SIZE-1:0] controls;
-   assign regwrite = controls[11];
-   assign regdst = controls[10];
-   assign alusrc = controls[9];
-   assign branch = controls[8];
-   assign memwrite = controls[7];
-   assign memtoreg = controls[6];
+   
+   assign memtoreg = controls[13];
+   assign memwrite = controls[12];
+   assign branchtype = controls[11:9];
+   assign alusrc = controls[8];
+   assign regdst = controls[7];
+   assign regwrite = controls[6];
    assign jump = controls[5];
    assign aluop = controls[4:3];
    assign immtype = controls[2:0];
@@ -47,7 +48,7 @@ module cpu5_maindec (
    wire op_b_branch = (op == `CPU5_OPCODE_SIZE'b1100011);
 
    wire funct3_000 = (funct3 == `CPU5_FUNCT3_SIZE'b000);
-   //wire funct3_001 = (funct3 == 3'b001);
+   wire funct3_001 = (funct3 == `CPU5_FUNCT3_SIZE'b001);
    //wire funct3_010 = (funct3 == 3'b010);
    //wire funct3_011 = (funct3 == 3'b011);
    //wire funct3_100 = (funct3 == 3'b100);
@@ -68,71 +69,88 @@ module cpu5_maindec (
    wire rv32_add = op_r_instructions & funct3_000 & funct7_0000000;
    
    wire rv32_beq = op_b_branch & funct3_000;
+   wire rv32_bne = op_b_branch & funct3_001;
+   
+
+   wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_lw_controls = {
+	      1'b1, // memtoreg: yes
+	      1'b0, // memwrite: no
+	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
+	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: rs2
+	      1'b1, // regdst: (rd)
+	      1'b1, // regwrite: yes
+	      1'b0, // jump: no
+	      2'b00, // aluop: add
+	      `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I 
+	      };
    
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_sw_controls = {
-	      1'b0, // regwrite: no
-	      1'b0, // regdst: (rs2)
-	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
-	      1'b0, // branch: no
-	      1'b1, // memwrite: yes
 	      1'b0, // memtoreg: no
+	      1'b1, // memwrite: yes
+	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
+	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
+	      1'b1, // regdst: (rd)
+	      1'b0, // regwrite: no
 	      1'b0, // jump: no
 	      2'b00, // aluop: add
 	      `CPU5_IMMTYPE_S // immtype: CPU5_IMMTYPE_S     
 	      };
 
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_addi_controls = {
-	      1'b1, // regwrite: yes
-	      1'b1, // regdst: (rd)
-	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
-	      1'b0, // branch: no
-	      1'b0, // memwrite: no
 	      1'b0, // memtoreg: no
+	      1'b0, // memwrite: no
+	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
+	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
+	      1'b1, // regdst: (rd)
+	      1'b1, // regwrite: yes
 	      1'b0, // jump: no
 	      2'b00, // aluop: add
 	      `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I    
 	      };
    
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_add_controls = {
-	      1'b1, // regwrite: yes
-	      1'b1, // regdst: (rd)
-	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
-	      1'b0, // branch: no
-	      1'b0, // memwrite: no
 	      1'b0, // memtoreg: no
+	      1'b0, // memwrite: no
+	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
+	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
+	      1'b1, // regdst: (rd)
+	      1'b1, // regwrite: yes
 	      1'b0, // jump: no
 	      2'b00, // aluop: add
 	      `CPU5_IMMTYPE_R // immtype: CPU5_IMMTYPE_R, no imm 
 	      };
    
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_beq_controls = {
-	      1'b0, // regwrite: no
-	      1'b1, // regdst: (rd)
-	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
-	      1'b1, // branch: no
-	      1'b0, // memwrite: no
 	      1'b0, // memtoreg: no
+	      1'b0, // memwrite: no
+	      `CPU5_BRANCHTYPE_BEQ, // branch: no
+	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
+	      1'b1, // regdst: (rd)
+	      1'b0, // regwrite: no
 	      1'b0, // jump: no
 	      2'b01, // aluop: sub
-	      `CPU5_IMMTYPE_B // immtype: CPU5_IMMTYPE_R, no imm 
+	      `CPU5_IMMTYPE_B // immtype: CPU5_IMMTYPE_B
 	      };
 
+   wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_bne_controls = {
+	      1'b0, // memtoreg: no
+	      1'b0, // memwrite: no
+	      `CPU5_BRANCHTYPE_BNE, // branch: no
+	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
+	      1'b1, // regdst: (rd)
+	      1'b0, // regwrite: no
+	      1'b0, // jump: no
+	      2'b01, // aluop: sub
+	      `CPU5_IMMTYPE_B // immtype: CPU5_IMMTYPE_B 
+	      };
 
    
-   assign controls = ({`MAINDEC_CONTROL_SIZE{rv32_lw}} & 12'b111001000001)  // immtype: CPU5_IMMTYPE_I
-                                                       // aluop 00
-                                                       // jump 0
-                                                       // memtoreg 1
-                                                       // memwrite 0
-                                                       // branch 0
-                                                       // alusrc 1  0:Writedata from rf, 1:imm
-                                                       // regdst 1  0:WRITE_TO_RS2; 1:WRITE_TO_RD
-                                                       // regwrite 1
-                                                       // Above describes LW instruction
+   assign controls = ({`MAINDEC_CONTROL_SIZE{rv32_lw}} & rv32_lw_controls)
                    | ({`MAINDEC_CONTROL_SIZE{rv32_sw}} & rv32_sw_controls)
 		   | ({`MAINDEC_CONTROL_SIZE{rv32_addi}} & rv32_addi_controls)
 		   | ({`MAINDEC_CONTROL_SIZE{rv32_add}} & rv32_add_controls)
 		   | ({`MAINDEC_CONTROL_SIZE{rv32_beq}} & rv32_beq_controls)
+		   | ({`MAINDEC_CONTROL_SIZE{rv32_bne}} & rv32_bne_controls)
 		     ;
 endmodule
 

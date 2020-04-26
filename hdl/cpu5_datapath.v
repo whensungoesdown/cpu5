@@ -4,14 +4,14 @@ module cpu5_datapath (
 		      input  clk,
 		      input  reset,
 		      input  memtoreg,
-		      input  pcsrc,
+		      input  [`CPU5_BRANCHTYPE_SIZE-1:0] branchtype, //input  pcsrc,
 		      input  alusrc,
 		      input  regdst,
 		      input  regwrite,
 		      input  jump,
 		      input  [`CPU5_ALU_CONTROL_SIZE-1:0] alucontrol,
                       input  [`CPU5_IMMTYPE_SIZE-1:0] immtype,
-		      output zero,
+		      //output zero,
 		      output [`CPU5_XLEN-1:0] pc,
 		      input  [`CPU5_XLEN-1:0] instr,
 		      output [`CPU5_XLEN-1:0] dataaddr,
@@ -39,6 +39,8 @@ module cpu5_datapath (
    wire [`CPU5_XLEN-1:0] result;
 
 
+   wire zero;
+   
    
    wire [`CPU5_XLEN-1:0] i_imm = {
 			{`CPU5_XLEN-`CPU5_I_IMM_SIZE{instr[`CPU5_I_IMM_HIGH]}},
@@ -64,15 +66,23 @@ module cpu5_datapath (
                   | ({`CPU5_XLEN{immtype == `CPU5_IMMTYPE_B}} & b_imm)
 		     ;
 
+
+
+   wire branch = ((branchtype == `CPU5_BRANCHTYPE_BEQ) & zero)
+               | ((branchtype == `CPU5_BRANCHTYPE_BNE) & (~zero))
+	;
+
+   
+   
    // next PC logic
    cpu5_dffr#(`CPU5_XLEN) pcreg(pcnext, pc, clk, reset);
    cpu5_adder pcadd1(pc, 32'b100, pcplus4); // next pc if no branch, no jump
    cpu5_sl1 immsh(signimm, signimmsh);
    // risc-v counts begin at the current branch instruction
    cpu5_adder pcadd2(pc, signimmsh, pcbranch);
-   // pcsrc desides if to take next instruction or branch to pcbranch
+   // branch desides if to take next instruction or branch to pcbranch
    // pcnextbr means pc next br 
-   cpu5_mux2#(`CPU5_XLEN) pcbrmux(pcplus4, pcbranch, pcsrc, pcnextbr);
+   cpu5_mux2#(`CPU5_XLEN) pcbrmux(pcplus4, pcbranch, branch, pcnextbr);
    // pcnext is the final pc
    // code review when implementing jump
    cpu5_mux2#(`CPU5_XLEN) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext);
@@ -85,8 +95,8 @@ module cpu5_datapath (
 		   writereg, result,
 		   clk, reset);
 
-   // regdst determines whether  or write to rd in LW instruction
-   // ? when need to write to rs2?
+   // rd <-- mem/reg
+   // when write to rs2?
    cpu5_mux2#(`CPU5_RFIDX_WIDTH) wrmux(instr[`CPU5_RS2_HIGH:`CPU5_RS2_LOW],
 				       instr[`CPU5_RD_HIGH:`CPU5_RD_LOW],
 				       regdst, writereg);

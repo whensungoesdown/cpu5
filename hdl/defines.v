@@ -65,3 +65,13 @@
 `define CPU5_OPCODE_LOW           0
 `define CPU5_OPCODE_SIZE          7
 
+
+// Branch 
+`define CPU5_BRANCHTYPE_SIZE      3
+
+// BRANCHTYPE similar to funct3, use 3'b010 as nobranch
+`define CPU5_BRANCHTYPE_NOBRANCH  3'b010
+
+`define CPU5_BRANCHTYPE_BEQ       3'b000
+`define CPU5_BRANCHTYPE_BNE       3'b001
+// ...

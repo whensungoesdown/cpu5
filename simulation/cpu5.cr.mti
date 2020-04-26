@@ -14,16 +14,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	cpu5_adder
 
-} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_core.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_core.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module cpu5_core
-
-Top level modules:
-	cpu5_core
-
-} {} {}} /home/uty/prjs/cpu5/hdl/defines.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/defines.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-
 } {} {}} /home/uty/prjs/cpu5/hdl/cpu5_signext.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_signext.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module cpu5_signext
@@ -41,13 +31,6 @@ Top level modules:
 	cpu5_dffl
 	cpu5_dfflr
 	cpu5_dffr
-
-} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_controller.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_controller.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module cpu5_controller
-
-Top level modules:
-	cpu5_controller
 
 } {} {}} /home/uty/prjs/cpu5/hdl/cpu5_mux2.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_mux2.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -76,13 +59,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 
 Top level modules:
 	cpu5_sl1
-
-} {} {}} /home/uty/prjs/cpu5/hdl/cpu5_maindec.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_maindec.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module cpu5_maindec
-
-Top level modules:
-	cpu5_maindec
 
 } {} {}} /home/uty/prjs/cpu5/hdl/cpu5_alu.v {1 {vlog -work work -stats=none /home/uty/prjs/cpu5/hdl/cpu5_alu.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016

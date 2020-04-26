@@ -4,10 +4,10 @@ module cpu5_controller (
    input  [`CPU5_OPCODE_SIZE-1:0] op,
    input  [`CPU5_FUNCT3_SIZE-1:0] funct3,
    input  [`CPU5_FUNCT7_SIZE-1:0] funct7,
-   input  zero,
+   //input  zero,
    output memtoreg,			
    output memwrite,
-   output pcsrc,
+   output [`CPU5_BRANCHTYPE_SIZE-1:0] branchtype, //output pcsrc,
    output alusrc,
    output regdst,
    output regwrite,
@@ -17,7 +17,7 @@ module cpu5_controller (
 );
    
    wire [`CPU5_ALU_OP_SIZE-1:0] aluop;
-   wire branch;
+   //wire branch;
 
    // risc-v
    // op determinss what to do, read from/to memory or
@@ -27,13 +27,13 @@ module cpu5_controller (
    //    alucontrol it should give
    
    cpu5_maindec md(op,funct3, funct7,
-                   memtoreg, memwrite, branch,
+                   memtoreg, memwrite, branchtype,
 		   alusrc, regdst, regwrite, jump,
 		   aluop, immtype);
 
    cpu5_aludec ad(funct3, funct7, aluop, alucontrol);
 
-   assign pcsrc = branch & zero;
+   //assign pcsrc = branch & zero;
 endmodule
 			
 //opcodes-rv32i
