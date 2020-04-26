@@ -18,6 +18,8 @@ SOURCE_FILES = ../hdl/defines.v ../hdl/cpu5_core.v \
 		../hdl/cpu5_regfile.v \
 		../hdl/cpu5_signext.v \
 		../hdl/cpu5_alu.v \
+		../hdl/cpu5_immdec.v \
+		../hdl/cpu5_branchdec.v \
 		../hdl/top.v \
 		../testbenches/pseudo_icache.v
 
