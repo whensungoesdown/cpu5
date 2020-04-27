@@ -35,7 +35,8 @@ module cpu5_datapath (
    wire [`CPU5_XLEN-1:0] rs1;
    wire [`CPU5_XLEN-1:0] rs2_imm;
    
-   wire [`CPU5_XLEN-1:0] result;
+   wire [`CPU5_XLEN-1:0] alu_mem;
+   wire [`CPU5_XLEN-1:0] rd;
 
    wire branch;
    wire zero;
@@ -58,25 +59,28 @@ module cpu5_datapath (
    cpu5_mux2#(`CPU5_XLEN) pcbrmux(pcplus4, pcbranch, branch, pcnextbr);
    // pcnext is the final pc
    // code review when implementing jump
-   cpu5_mux2#(`CPU5_XLEN) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext);
+   cpu5_mux2#(`CPU5_XLEN) pcmux(pcnextbr, aluout, jump, pcnext);
 
    // register file logic
    cpu5_regfile rf(instr[`CPU5_RS1_HIGH:`CPU5_RS1_LOW],
                    instr[`CPU5_RS2_HIGH:`CPU5_RS2_LOW],
                    rs1, writedata, // SW: rs2 contains data to write to memory
                    regwrite,
-		   writereg, result,
+		   writereg, rd,
 		   clk, reset);
 
    // rd <-- mem/reg
    // when write to rs2?
+   // ???
    cpu5_mux2#(`CPU5_RFIDX_WIDTH) wrmux(instr[`CPU5_RS2_HIGH:`CPU5_RS2_LOW],
 				       instr[`CPU5_RD_HIGH:`CPU5_RD_LOW],
 				       regdst, writereg);
    // memtoreg 1 means it's a LW, data comes from memory,
-   // otherwise the result comes from ALU
+   // otherwise the alu_mem comes from ALU
    // LW: load data from memory to rd.  add rd, rs1, rs2: ALU output to rd
-   cpu5_mux2#(`CPU5_XLEN) resmux(aluout, readdata, memtoreg, result);
+   cpu5_mux2#(`CPU5_XLEN) resmux(aluout, readdata, memtoreg, alu_mem);
+
+   cpu5_mux2#(`CPU5_XLEN) jumpmux(alu_mem, pcplus4, jump, rd);
 
    //cpu5_signext se(instr[`CPU5_IMM_HIGH:`CPU5_IMM_LOW], signimm);
 
