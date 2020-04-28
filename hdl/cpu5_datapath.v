@@ -6,7 +6,7 @@ module cpu5_datapath (
 		      input  memtoreg,
 		      input  [`CPU5_BRANCHTYPE_SIZE-1:0] branchtype, //input  pcsrc,
 		      input  alusrc,
-		      input  regdst,
+		      //input  regdst,
 		      input  regwrite,
 		      input  jump,
 		      input  [`CPU5_ALU_CONTROL_SIZE-1:0] alucontrol,
@@ -22,7 +22,7 @@ module cpu5_datapath (
 
    assign dataaddr = aluout;
    
-   wire [`CPU5_RFIDX_WIDTH-1:0] writereg;
+   wire [`CPU5_RFIDX_WIDTH-1:0] writereg = instr[`CPU5_RD_HIGH:`CPU5_RD_LOW];
 
    wire [`CPU5_XLEN-1:0] pcnext;
    wire [`CPU5_XLEN-1:0] pcnextbr;
@@ -71,10 +71,13 @@ module cpu5_datapath (
 
    // rd <-- mem/reg
    // when write to rs2?
-   // ???
-   cpu5_mux2#(`CPU5_RFIDX_WIDTH) wrmux(instr[`CPU5_RS2_HIGH:`CPU5_RS2_LOW],
-				       instr[`CPU5_RD_HIGH:`CPU5_RD_LOW],
-				       regdst, writereg);
+   // only mips need to determine write-register, MIPS LW use rt(rs2) as the destination register
+   // but other type instruction use rd
+   
+   //cpu5_mux2#(`CPU5_RFIDX_WIDTH) wrmux(instr[`CPU5_RS2_HIGH:`CPU5_RS2_LOW],
+   //				       instr[`CPU5_RD_HIGH:`CPU5_RD_LOW],
+   //				       regdst, writereg);
+   
    // memtoreg 1 means it's a LW, data comes from memory,
    // otherwise the alu_mem comes from ALU
    // LW: load data from memory to rd.  add rd, rs1, rs2: ALU output to rd

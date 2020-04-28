@@ -9,7 +9,7 @@ module cpu5_controller (
    output memwrite,
    output [`CPU5_BRANCHTYPE_SIZE-1:0] branchtype, //output pcsrc,
    output alusrc,
-   output regdst,
+   //output regdst,
    output regwrite,
    output jump,
    output [`CPU5_ALU_CONTROL_SIZE-1:0] alucontrol,
@@ -28,7 +28,7 @@ module cpu5_controller (
    
    cpu5_maindec md(op,funct3, funct7,
                    memtoreg, memwrite, branchtype,
-		   alusrc, regdst, regwrite, jump,
+		   alusrc, regwrite, jump,
 		   aluop, immtype);
 
    cpu5_aludec ad(funct3, funct7, aluop, alucontrol);

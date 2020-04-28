@@ -30,11 +30,11 @@ module cpu5_core (
 		     instr[`CPU5_FUNCT3_HIGH:`CPU5_FUNCT3_LOW],
 		     instr[`CPU5_FUNCT7_HIGH:`CPU5_FUNCT7_LOW],
 		     memtoreg, memwrite, branchtype,
-		     alusrc, regdst, regwrite, jump,
+		     alusrc, regwrite, jump,
 		     alucontrol, immtype);
    
    cpu5_datapath dp(clk, reset, memtoreg, branchtype,
-		    alusrc, regdst, regwrite, jump,
+		    alusrc, regwrite, jump,
 		    alucontrol, immtype, pc, instr,
 		    dataaddr, writedata, readdata);
 
