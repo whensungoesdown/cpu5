@@ -19,7 +19,6 @@ module cpu5_core (
    wire regdst;
    wire regwrite;
    wire jump;
-   //wire pcsrc;
    wire [`CPU5_BRANCHTYPE_SIZE-1:0] branchtype;
    wire zero;
 

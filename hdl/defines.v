@@ -6,7 +6,11 @@
 `define CPU5_XLEN         32
 
 `define CPU5_ALU_CONTROL_SIZE     3
+
 `define CPU5_ALU_OP_SIZE          2
+`define CPU5_ALU_OP_ADD           2'b00
+`define CPU5_ALU_OP_SUB           2'b01
+`define CPU5_ALU_OP_OTHER         2'b11
 
 `define CPU5_FUNCT3_HIGH         14
 `define CPU5_FUNCT3_LOW          12

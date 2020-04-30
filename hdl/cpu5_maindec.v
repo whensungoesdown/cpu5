@@ -6,7 +6,9 @@
 `define MAINDEC_CONTROL_ALUSRC_RS2     1'b0
 `define MAINDEC_CONTROL_ALUSRC_IMM     1'b1
 
-// aluop:                   00:  LW SW(?)
+// aluop:                   00: add
+//                          01: sub
+//                          11: other
 
 // alusrc:                   0: rs2
 //                           1: imm
@@ -22,7 +24,6 @@ module cpu5_maindec (
 		     output memwrite,
 		     output [`CPU5_BRANCHTYPE_SIZE-1:0]branchtype,
 		     output alusrc,
-		     //output regdst,
 		     output regwrite,
 		     output jump,
 		     output [`CPU5_ALU_OP_SIZE-1:0] aluop,
@@ -35,7 +36,6 @@ module cpu5_maindec (
    assign memwrite = controls[11];
    assign branchtype = controls[10:8];
    assign alusrc = controls[7];
-   //assign regdst = controls[7];
    assign regwrite = controls[6];
    assign jump = controls[5];
    assign aluop = controls[4:3];
@@ -67,6 +67,7 @@ module cpu5_maindec (
    wire rv32_addi = op_i_arithmatic & funct3_000;
 
    wire rv32_add = op_r_instructions & funct3_000 & funct7_0000000;
+   //wire rv32_sub = op_r_instructions & funct3_000 & funct7_0100000;
    
    wire rv32_beq = op_b_branch & funct3_000;
    wire rv32_bne = op_b_branch & funct3_001;
@@ -79,10 +80,9 @@ module cpu5_maindec (
 	      1'b0, // memwrite: no
 	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
 	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
-	      //1'b1, // regdst: (rd)
 	      1'b1, // regwrite: yes
 	      1'b0, // jump: no
-	      2'b00, // aluop: add
+	      `CPU5_ALU_OP_ADD, // aluop: add
 	      `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I 
 	      };
    
@@ -91,10 +91,9 @@ module cpu5_maindec (
 	      1'b1, // memwrite: yes
 	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
 	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
-	      //1'b1, // regdst: (rd)
 	      1'b0, // regwrite: no
 	      1'b0, // jump: no
-	      2'b00, // aluop: add
+	      `CPU5_ALU_OP_ADD, // aluop: add
 	      `CPU5_IMMTYPE_S // immtype: CPU5_IMMTYPE_S     
 	      };
 
@@ -103,10 +102,9 @@ module cpu5_maindec (
 	      1'b0, // memwrite: no
 	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
 	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
-	      //1'b1, // regdst: (rd)
 	      1'b1, // regwrite: yes
 	      1'b0, // jump: no
-	      2'b00, // aluop: add
+	      `CPU5_ALU_OP_ADD, // aluop: add
 	      `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I    
 	      };
    
@@ -115,10 +113,9 @@ module cpu5_maindec (
 	      1'b0, // memwrite: no
 	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
 	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
-	      //1'b1, // regdst: (rd)
 	      1'b1, // regwrite: yes
 	      1'b0, // jump: no
-	      2'b00, // aluop: add
+	      `CPU5_ALU_OP_ADD, // aluop: add
 	      `CPU5_IMMTYPE_R // immtype: CPU5_IMMTYPE_R, no imm 
 	      };
    
@@ -127,10 +124,9 @@ module cpu5_maindec (
 	      1'b0, // memwrite: no
 	      `CPU5_BRANCHTYPE_BEQ, // branch
 	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
-	      //1'b1, // regdst: (rd)
 	      1'b0, // regwrite: no
 	      1'b0, // jump: no
-	      2'b01, // aluop: sub
+	      `CPU5_ALU_OP_SUB, // aluop: sub
 	      `CPU5_IMMTYPE_B // immtype: CPU5_IMMTYPE_B
 	      };
 
@@ -139,10 +135,9 @@ module cpu5_maindec (
 	      1'b0, // memwrite: no
 	      `CPU5_BRANCHTYPE_BNE, // branch
 	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
-	      //1'b1, // regdst: (rd)
 	      1'b0, // regwrite: no
 	      1'b0, // jump: no
-	      2'b01, // aluop: sub
+	      `CPU5_ALU_OP_SUB, // aluop: sub
 	      `CPU5_IMMTYPE_B // immtype: CPU5_IMMTYPE_B 
 	      };
 
@@ -152,10 +147,9 @@ module cpu5_maindec (
 	      1'b0, // memwrite: no
 	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
 	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: rs2
-	      //1'b1, // regdst: (rd)
 	      1'b1, // regwrite: yes
 	      1'b1, // jump: yes
-	      2'b00, // aluop: add
+	      `CPU5_ALU_OP_ADD, // aluop: add
 	      `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I 
 	      };
 
