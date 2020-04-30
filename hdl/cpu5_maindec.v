@@ -57,7 +57,7 @@ module cpu5_maindec (
    //wire funct3_111 = (funct3 == 3'b111);
 
    wire funct7_0000000 = (funct7 == `CPU5_FUNCT7_SIZE'b0000000);
-   //wire funct7_0100000 = (funct7 == `CPU5_FUNCT7_SIZE'b0100000);
+   wire funct7_0100000 = (funct7 == `CPU5_FUNCT7_SIZE'b0100000);
    // ...
 
 
@@ -67,7 +67,7 @@ module cpu5_maindec (
    wire rv32_addi = op_i_arithmatic & funct3_000;
 
    wire rv32_add = op_r_instructions & funct3_000 & funct7_0000000;
-   //wire rv32_sub = op_r_instructions & funct3_000 & funct7_0100000;
+   wire rv32_sub = op_r_instructions & funct3_000 & funct7_0100000;
    
    wire rv32_beq = op_b_branch & funct3_000;
    wire rv32_bne = op_b_branch & funct3_001;
@@ -76,88 +76,100 @@ module cpu5_maindec (
    //wire rv32_jal = (op == `CPU5_OPCODE_SIZE'b01110011);
 
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_lw_controls = {
-	      1'b1, // memtoreg: yes
-	      1'b0, // memwrite: no
-	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
-	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
-	      1'b1, // regwrite: yes
-	      1'b0, // jump: no
-	      `CPU5_ALU_OP_ADD, // aluop: add
-	      `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I 
-	      };
+				    1'b1, // memtoreg: yes
+				    1'b0, // memwrite: no
+				    `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
+				    `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
+				    1'b1, // regwrite: yes
+				    1'b0, // jump: no
+				    `CPU5_ALU_OP_ADD, // aluop: add
+				    `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I 
+				    };
    
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_sw_controls = {
-	      1'b0, // memtoreg: no
-	      1'b1, // memwrite: yes
-	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
-	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
-	      1'b0, // regwrite: no
-	      1'b0, // jump: no
-	      `CPU5_ALU_OP_ADD, // aluop: add
-	      `CPU5_IMMTYPE_S // immtype: CPU5_IMMTYPE_S     
-	      };
+				    1'b0, // memtoreg: no
+				    1'b1, // memwrite: yes
+				    `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
+				    `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
+				    1'b0, // regwrite: no
+				    1'b0, // jump: no
+				    `CPU5_ALU_OP_ADD, // aluop: add
+				    `CPU5_IMMTYPE_S // immtype: CPU5_IMMTYPE_S     
+				    };
 
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_addi_controls = {
-	      1'b0, // memtoreg: no
-	      1'b0, // memwrite: no
-	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
-	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
-	      1'b1, // regwrite: yes
-	      1'b0, // jump: no
-	      `CPU5_ALU_OP_ADD, // aluop: add
-	      `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I    
-	      };
+				    1'b0, // memtoreg: no
+				    1'b0, // memwrite: no
+				    `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
+				    `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: imm
+				    1'b1, // regwrite: yes
+				    1'b0, // jump: no
+				    `CPU5_ALU_OP_ADD, // aluop: add
+				    `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I    
+				    };
    
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_add_controls = {
-	      1'b0, // memtoreg: no
-	      1'b0, // memwrite: no
-	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
-	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
-	      1'b1, // regwrite: yes
-	      1'b0, // jump: no
-	      `CPU5_ALU_OP_ADD, // aluop: add
-	      `CPU5_IMMTYPE_R // immtype: CPU5_IMMTYPE_R, no imm 
-	      };
+				    1'b0, // memtoreg: no
+				    1'b0, // memwrite: no
+				    `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
+				    `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
+				    1'b1, // regwrite: yes
+				    1'b0, // jump: no
+				    `CPU5_ALU_OP_ADD, // aluop: add
+				    `CPU5_IMMTYPE_R // immtype: CPU5_IMMTYPE_R, no imm 
+				    };
+
+   wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_sub_controls = {
+				    1'b0, // memtoreg: no
+				    1'b0, // memwrite: no
+				    `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
+				    `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
+				    1'b1, // regwrite: yes
+				    1'b0, // jump: no
+				    `CPU5_ALU_OP_SUB, // aluop: sub
+				    `CPU5_IMMTYPE_R // immtype: CPU5_IMMTYPE_R, no imm
+				    };
    
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_beq_controls = {
-	      1'b0, // memtoreg: no
-	      1'b0, // memwrite: no
-	      `CPU5_BRANCHTYPE_BEQ, // branch
-	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
-	      1'b0, // regwrite: no
-	      1'b0, // jump: no
-	      `CPU5_ALU_OP_SUB, // aluop: sub
-	      `CPU5_IMMTYPE_B // immtype: CPU5_IMMTYPE_B
-	      };
+				    1'b0, // memtoreg: no
+				    1'b0, // memwrite: no
+				    `CPU5_BRANCHTYPE_BEQ, // branch
+				    `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
+				    1'b0, // regwrite: no
+				    1'b0, // jump: no
+				    `CPU5_ALU_OP_SUB, // aluop: sub
+				    `CPU5_IMMTYPE_B // immtype: CPU5_IMMTYPE_B
+				    };
 
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_bne_controls = {
-	      1'b0, // memtoreg: no
-	      1'b0, // memwrite: no
-	      `CPU5_BRANCHTYPE_BNE, // branch
-	      `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
-	      1'b0, // regwrite: no
-	      1'b0, // jump: no
-	      `CPU5_ALU_OP_SUB, // aluop: sub
-	      `CPU5_IMMTYPE_B // immtype: CPU5_IMMTYPE_B 
-	      };
+				    1'b0, // memtoreg: no
+				    1'b0, // memwrite: no
+				    `CPU5_BRANCHTYPE_BNE, // branch
+				    `MAINDEC_CONTROL_ALUSRC_RS2, // alusrc: rs2
+				    1'b0, // regwrite: no
+				    1'b0, // jump: no
+				    `CPU5_ALU_OP_SUB, // aluop: sub
+				    `CPU5_IMMTYPE_B // immtype: CPU5_IMMTYPE_B 
+				    };
 
    
    wire [`MAINDEC_CONTROL_SIZE-1:0] rv32_jalr_controls = {
-	      1'b0, // memtoreg: no
-	      1'b0, // memwrite: no
-	      `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
-	      `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: rs2
-	      1'b1, // regwrite: yes
-	      1'b1, // jump: yes
-	      `CPU5_ALU_OP_ADD, // aluop: add
-	      `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I 
-	      };
+				    1'b0, // memtoreg: no
+				    1'b0, // memwrite: no
+				    `CPU5_BRANCHTYPE_NOBRANCH, // branch: no
+				    `MAINDEC_CONTROL_ALUSRC_IMM, // alusrc: rs2
+				    1'b1, // regwrite: yes
+				    1'b1, // jump: yes
+				    `CPU5_ALU_OP_ADD, // aluop: add
+				    `CPU5_IMMTYPE_I // immtype: CPU5_IMMTYPE_I 
+				    };
 
    
    assign controls = ({`MAINDEC_CONTROL_SIZE{rv32_lw}} & rv32_lw_controls)
                    | ({`MAINDEC_CONTROL_SIZE{rv32_sw}} & rv32_sw_controls)
 		   | ({`MAINDEC_CONTROL_SIZE{rv32_addi}} & rv32_addi_controls)
 		   | ({`MAINDEC_CONTROL_SIZE{rv32_add}} & rv32_add_controls)
+		   | ({`MAINDEC_CONTROL_SIZE{rv32_sub}} & rv32_sub_controls)
 		   | ({`MAINDEC_CONTROL_SIZE{rv32_beq}} & rv32_beq_controls)
 		   | ({`MAINDEC_CONTROL_SIZE{rv32_bne}} & rv32_bne_controls)
 		   | ({`MAINDEC_CONTROL_SIZE{rv32_jalr}} & rv32_jalr_controls)
