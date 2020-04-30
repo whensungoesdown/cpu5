@@ -7,6 +7,7 @@ The following instructions are implemented
 LW 
 SW 
 ADD 
+SUB
 ADDI 
 BEQ 
 BNE 
@@ -33,9 +34,12 @@ JALR
 	2c:		00000013		nop
 	30:		05000293		addi x5 x0 80
 	34:		0012a223		sw x1 4(x5)
+	38:		ffc00313		addi x6 x0 -4
+	3c:		406282b3		sub x5 x5 x6
+	40:		0012a423		sw x1 8(x5)
 
-00000038 <halt>:
-	38:		00000013		nop
-	3c:		fe000ee3		beq x0 x0 -4 <halt>
+00000044 <halt>:
+	44:		00000013		nop
+	48:		fe000ee3		beq x0 x0 -4 <halt>
 
 ``````````
